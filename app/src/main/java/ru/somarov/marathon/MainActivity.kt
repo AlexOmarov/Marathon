@@ -2,7 +2,7 @@ package ru.somarov.marathon
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ru.somarov.marathon.ui.main.MainFragment
+import ru.somarov.marathon.ui.main.plugin.runner_card.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

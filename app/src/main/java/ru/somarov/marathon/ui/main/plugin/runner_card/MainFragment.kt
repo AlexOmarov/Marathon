@@ -1,4 +1,4 @@
-package ru.somarov.marathon.ui.main
+package ru.somarov.marathon.ui.main.plugin.runner_card
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -6,12 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import kotlinx.android.synthetic.main.main_fragment.*
 import ru.somarov.marathon.R
+import ru.somarov.marathon.ui.main.plugin.runner_card.model.MainViewModel
 
 class MainFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() =
+            MainFragment()
     }
 
     private lateinit var viewModel: MainViewModel
@@ -24,7 +28,9 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel.user.observe(viewLifecycleOwner, Observer {
+            message.text = it
+        })
     }
 
 }

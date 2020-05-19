@@ -8,4 +8,22 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- My application theme. -->
+    <style name="MyTheme" parent="Theme.MaterialComponents.DayNight">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@color/darkPrimaryColorBackground</item>
+        <item name="colorPrimary">@color/defaultPrimaryColorBackground</item>
+        <item name="colorPrimaryVariant">@color/lightPrimaryColorBackground</item>
+
+        <item name="colorAccent">@color/accentColor</item>
+
+
+        <item name="colorOnPrimary">@color/textPrimaryColor</item>
+
+        <item name="android:textColorPrimary">@color/textPrimaryColor</item>
+        <item name="colorOnSecondary">@color/secondaryTextColor</item>
+        <item name="divider">@color/dividerColor</item>
+
+    </style>
+
 </resources>
