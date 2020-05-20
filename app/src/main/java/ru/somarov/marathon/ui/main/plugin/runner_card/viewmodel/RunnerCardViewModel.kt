@@ -1,10 +1,10 @@
-package ru.somarov.marathon.ui.main.plugin.runner_card.model
+package ru.somarov.marathon.ui.main.plugin.runner_card.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class MainViewModel : ViewModel() {
+class RunnerCardViewModel : ViewModel() {
     private val _user = MutableLiveData<String>()
     private val secondName = "The most beautiful man on Earth"
     private val firstName = "John"

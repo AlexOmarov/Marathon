@@ -1,4 +1,4 @@
-package ru.somarov.marathon.ui.main.plugin.runner_card
+package ru.somarov.marathon.ui.main.plugin.runner_card.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,24 +8,24 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.somarov.marathon.R
-import ru.somarov.marathon.databinding.MainFragmentBinding
-import ru.somarov.marathon.ui.main.plugin.runner_card.model.MainViewModel
+import ru.somarov.marathon.databinding.RunnerCardFragmentBinding
+import ru.somarov.marathon.ui.main.plugin.runner_card.viewmodel.RunnerCardViewModel
 
-class MainFragment : Fragment() {
+class RunnerCardFragment : Fragment() {
 
     companion object {
         fun newInstance() =
-            MainFragment()
+            RunnerCardFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: RunnerCardViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        val binding: MainFragmentBinding = DataBindingUtil.inflate(
-            inflater, R.layout.main_fragment, container, false)
-        binding.userViewModel = viewModel
+        viewModel = ViewModelProvider(this)[RunnerCardViewModel::class.java]
+        val binding: RunnerCardFragmentBinding = DataBindingUtil.inflate(
+            inflater, R.layout.runner_card_fragment, container, false)
+        binding.runnerCardViewModel = viewModel
         binding.lifecycleOwner = this
         return binding.root
     }

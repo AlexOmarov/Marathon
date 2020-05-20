@@ -5,21 +5,21 @@
 
     <data>
         <variable
-            name="userViewModel"
-            type="ru.somarov.marathon.ui.main.plugin.runner_card.model.MainViewModel" />
+            name="runnerCardViewModel"
+            type="ru.somarov.marathon.ui.main.plugin.runner_card.viewmodel.RunnerCardViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.main.plugin.runner_card.MainFragment">
+        tools:context=".ui.main.plugin.runner_card.fragment.RunnerCardFragment">
 
         <TextView
             android:id="@+id/message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{userViewModel.user, default=my_default}'
+            android:text='@{runnerCardViewModel.user, default=my_default}'
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginBottom="32dp"
-            android:onClick="@{() -> userViewModel.changeName()}"
+            android:onClick="@{() -> runnerCardViewModel.changeName()}"
             android:text="@string/changeName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
