@@ -6,6 +6,9 @@ import ru.somarov.marathon.ui.main.plugin.runner_card.fragment.RunnerCardFragmen
 
 class MainActivity : AppCompatActivity() {
 
+    // Reference to the application graph that is used across the whole app
+    // val appComponent = DaggerApplicationComponent.create()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
