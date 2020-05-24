@@ -7,4 +7,7 @@ import ru.somarov.marathon.backend.main.plugin.runner_card.entity.Gender
 import ru.somarov.marathon.backend.main.plugin.runner_card.entity.Runner
 
 @Dao
-interface GenderDao: BaseDao<Gender>
+interface GenderDao: BaseDao<Gender> {
+    @Query("SELECT * from Gender where id = :name")
+    suspend fun getGender(name: String): Gender
+}

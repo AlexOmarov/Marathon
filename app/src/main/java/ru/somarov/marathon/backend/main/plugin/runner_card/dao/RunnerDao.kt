@@ -9,7 +9,7 @@ import ru.somarov.marathon.backend.main.plugin.runner_card.entity.Runner
 @Dao
 interface RunnerDao: BaseDao<Runner> {
 
-    @Query("SELECT gender from runner where id = :id")
+    @Query("SELECT id_gender as id from runner where id = :id")
     fun getRunnerGender(id: Int): Gender
 
     @Query("SELECT * from runner ORDER BY dateOfBirth")

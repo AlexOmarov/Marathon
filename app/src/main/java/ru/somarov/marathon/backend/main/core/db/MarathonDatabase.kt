@@ -6,12 +6,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import ru.somarov.marathon.backend.main.plugin.runner_card.dao.GenderDao
 import ru.somarov.marathon.backend.main.plugin.runner_card.dao.RunnerDao
+import ru.somarov.marathon.backend.main.plugin.runner_card.entity.Gender
 import ru.somarov.marathon.backend.main.plugin.runner_card.entity.Runner
 
-@Database(entities = [Runner::class], version = 1)
+@Database(entities = [Runner::class, Gender::class], version = 1, exportSchema = false)
 abstract class MarathonDatabase: RoomDatabase() {
     abstract val runnerDao: RunnerDao
+    abstract val genderDao: GenderDao
 
 
     val MIGRATION_1_2 = object : Migration(1, 2) {
@@ -38,15 +41,16 @@ abstract class MarathonDatabase: RoomDatabase() {
                 return tempInstance
             }
             synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    MarathonDatabase::class.java,
-                    "marathon_database"
-                ).build()
+                val instance = Room.databaseBuilder(context, MarathonDatabase::class.java,
+                    "marathon_database")
+                    //.setJournalMode(JournalMode.TRUNCATE)
+                    .build()
                 INSTANCE = instance
                 return instance
             }
         }
     }
+
+
 
 }

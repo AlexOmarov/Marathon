@@ -1,14 +1,18 @@
 package ru.somarov.marathon.backend.main.plugin.runner_card.entity
 
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
+import androidx.room.ForeignKey.CASCADE
 
-@Entity(tableName = "runner")
+@Entity(tableName = "runner",
+        foreignKeys = [
+            ForeignKey(entity = Gender::class,
+                parentColumns = ["id"],
+                childColumns = ["id_gender"],
+                onDelete = CASCADE)],
+        indices = [Index("id_gender")])
 data class Runner(
     var email: String,
-    var gender: Gender,
+    var id_gender: String,
     @ColumnInfo(name = "dateOfBirth")
     var birthday: String,
     var countryCode: String
