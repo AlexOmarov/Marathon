@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import ru.somarov.marathon.R
+import ru.somarov.marathon.backend.main.plugin.runner_card.entity.Runner
 import ru.somarov.marathon.backend.main.plugin.runner_card.work_manager.RunnerCardWorker
 import ru.somarov.marathon.databinding.RunnerCardFragmentBinding
 import ru.somarov.marathon.databinding.TwoComponentImageItemBinding
@@ -43,6 +44,7 @@ class RunnerCardFragment : Fragment() {
             }
         })
 
+        binding.recyclerView.adapter = RunnerCardFragmentRecyclerViewAdapter(ArrayList())
         binding.runnerCardViewModel = viewModel
         binding.lifecycleOwner = this
 
