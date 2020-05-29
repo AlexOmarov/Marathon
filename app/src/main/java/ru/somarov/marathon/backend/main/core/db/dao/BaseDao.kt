@@ -1,4 +1,4 @@
-package ru.somarov.marathon.backend.main.core.dao
+package ru.somarov.marathon.backend.main.core.db.dao
 
 import androidx.room.Delete
 import androidx.room.Insert

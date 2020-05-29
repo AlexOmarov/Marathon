@@ -1,4 +1,4 @@
-package ru.somarov.marathon.backend.main.plugin.runner_card.entity
+package ru.somarov.marathon.backend.main.core.db.entity
 
 import androidx.room.*
 import androidx.room.ForeignKey.CASCADE
@@ -15,6 +15,7 @@ data class Runner(
     var id_gender: String,
     @ColumnInfo(name = "dateOfBirth")
     var birthday: String,
+    var password: String,
     var countryCode: String
 ) {
     @PrimaryKey(autoGenerate = true)

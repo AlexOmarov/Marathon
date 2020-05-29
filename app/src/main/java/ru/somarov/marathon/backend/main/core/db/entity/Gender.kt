@@ -1,4 +1,4 @@
-package ru.somarov.marathon.backend.main.plugin.runner_card.entity
+package ru.somarov.marathon.backend.main.core.db.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

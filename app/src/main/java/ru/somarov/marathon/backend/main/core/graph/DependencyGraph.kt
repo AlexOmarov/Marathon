@@ -1,4 +1,4 @@
-package ru.somarov.marathon.backend.main.plugin.runner_card.dependency_graph
+package ru.somarov.marathon.backend.main.core.graph
 
 import dagger.Component
 import ru.somarov.marathon.MainActivity

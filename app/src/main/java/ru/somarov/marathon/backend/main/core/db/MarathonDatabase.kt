@@ -6,10 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import ru.somarov.marathon.backend.main.plugin.runner_card.dao.GenderDao
-import ru.somarov.marathon.backend.main.plugin.runner_card.dao.RunnerDao
-import ru.somarov.marathon.backend.main.plugin.runner_card.entity.Gender
-import ru.somarov.marathon.backend.main.plugin.runner_card.entity.Runner
+import ru.somarov.marathon.backend.main.core.db.dao.GenderDao
+import ru.somarov.marathon.backend.main.core.db.dao.RunnerDao
+import ru.somarov.marathon.backend.main.core.db.entity.Gender
+import ru.somarov.marathon.backend.main.core.db.entity.Runner
 
 @Database(entities = [Runner::class, Gender::class], version = 1, exportSchema = false)
 abstract class MarathonDatabase: RoomDatabase() {

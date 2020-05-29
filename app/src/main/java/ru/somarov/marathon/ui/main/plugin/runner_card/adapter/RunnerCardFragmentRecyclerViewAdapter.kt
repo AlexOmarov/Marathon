@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.somarov.marathon.R
-import ru.somarov.marathon.backend.main.plugin.runner_card.entity.Runner
+import ru.somarov.marathon.backend.main.core.db.entity.Runner
 import ru.somarov.marathon.databinding.TwoComponentImageItemBinding
 
 class RunnerCardFragmentRecyclerViewAdapter(private val runners: List<Runner>):

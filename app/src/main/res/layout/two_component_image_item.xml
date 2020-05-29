@@ -5,7 +5,7 @@
     <data>
         <variable
             name="runner"
-            type="ru.somarov.marathon.backend.main.plugin.runner_card.entity.Runner" />
+            type="ru.somarov.marathon.backend.main.core.db.entity.Runner" />
     </data>
 
 <RelativeLayout

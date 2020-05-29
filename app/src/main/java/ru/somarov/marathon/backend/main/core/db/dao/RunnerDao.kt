@@ -1,10 +1,10 @@
-package ru.somarov.marathon.backend.main.plugin.runner_card.dao
+package ru.somarov.marathon.backend.main.core.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import ru.somarov.marathon.backend.main.core.dao.BaseDao
-import ru.somarov.marathon.backend.main.plugin.runner_card.entity.Gender
-import ru.somarov.marathon.backend.main.plugin.runner_card.entity.Runner
+import ru.somarov.marathon.backend.main.core.db.dao.BaseDao
+import ru.somarov.marathon.backend.main.core.db.entity.Gender
+import ru.somarov.marathon.backend.main.core.db.entity.Runner
 
 @Dao
 interface RunnerDao: BaseDao<Runner> {
