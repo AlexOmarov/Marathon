@@ -1,11 +1,10 @@
-package ru.somarov.marathon.backend.main.plugin.runner_card.work_manager
+package ru.somarov.marathon.backend.main.plugin.runner_card.worker
 
 import android.content.Context
-import android.provider.SyncStateContract
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 
-class RunnerCardWorker(c: Context, params: WorkerParameters): Worker(c, params) {
+class CardWorker(c: Context, params: WorkerParameters): Worker(c, params) {
     override fun doWork(): Result {
        /* uri = inputData.getString("PHOTO_URI")
         val success = upload(uri)*/
