@@ -14,34 +14,34 @@ import androidx.work.WorkManager
 import ru.somarov.marathon.R
 import ru.somarov.marathon.backend.main.plugin.runner_card.work_manager.RunnerCardWorker
 import ru.somarov.marathon.databinding.RunnerCardFragmentBinding
-import ru.somarov.marathon.ui.main.plugin.runner_card.adapter.RunnerCardFragmentRecyclerViewAdapter
-import ru.somarov.marathon.ui.main.plugin.runner_card.viewmodel.RunnerCardViewModel
+import ru.somarov.marathon.ui.main.plugin.runner_card.adapter.Adapter
+import ru.somarov.marathon.ui.main.plugin.runner_card.viewmodel.CardViewModel
 
-class RunnerCardFragment : Fragment() {
+class CardFragment : Fragment() {
 
     companion object {
         fun newInstance() =
-            RunnerCardFragment()
+            CardFragment()
     }
 
-    private lateinit var viewModel: RunnerCardViewModel
+    private lateinit var viewModel: CardViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
 
-        viewModel = ViewModelProvider(this)[RunnerCardViewModel::class.java]
+        viewModel = ViewModelProvider(this)[CardViewModel::class.java]
 
         val binding: RunnerCardFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.runner_card_fragment, container, false)
 
         viewModel.runners.observe(viewLifecycleOwner, Observer { runners ->
             binding.recyclerView.also {
-                it.adapter = RunnerCardFragmentRecyclerViewAdapter(runners)
+                it.adapter = Adapter(runners)
             }
         })
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = RunnerCardFragmentRecyclerViewAdapter(ArrayList())
+        binding.recyclerView.adapter = Adapter(ArrayList())
         binding.runnerCardViewModel = viewModel
         binding.lifecycleOwner = this
 

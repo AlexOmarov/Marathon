@@ -10,7 +10,7 @@ import ru.somarov.marathon.backend.main.core.remote.RemoteService
 import ru.somarov.marathon.backend.main.core.remote.ServiceBuilder
 import ru.somarov.marathon.backend.main.plugin.runner_card.repository.RunnerCardRepo
 
-class RunnerCardViewModel(application: Application) : AndroidViewModel(application) {
+class CardViewModel(application: Application) : AndroidViewModel(application) {
 
     private val runnerCardRepo: RunnerCardRepo = RunnerCardRepo(
         MarathonDatabase.getDatabase(application).runnerDao,

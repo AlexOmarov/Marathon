@@ -1,4 +1,4 @@
-package ru.somarov.marathon.ui.main.plugin.runner_card.viewmodel
+package ru.somarov.marathon.ui.main.core.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
