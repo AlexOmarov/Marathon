@@ -1,4 +1,4 @@
-package ru.somarov.marathon.backend.main.plugin.runner_card.worker
+package ru.somarov.marathon.backend.main.plugin.runner_card
 
 import android.content.Context
 import androidx.work.Worker

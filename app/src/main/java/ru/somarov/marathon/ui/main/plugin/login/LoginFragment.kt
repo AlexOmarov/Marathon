@@ -1,0 +1,81 @@
+package ru.somarov.marathon.ui.main.plugin.login
+
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.coroutineScope
+import ru.somarov.marathon.R
+import ru.somarov.marathon.backend.main.core.db.MarathonDatabase
+import ru.somarov.marathon.backend.main.core.remote.RemoteDataSource
+import ru.somarov.marathon.backend.main.core.remote.RemoteService
+import ru.somarov.marathon.backend.main.core.remote.ServiceBuilder
+import ru.somarov.marathon.backend.main.plugin.login.LoginRepository
+
+import ru.somarov.marathon.backend.main.plugin.login.dto.LoggedInUserView
+import ru.somarov.marathon.databinding.LoginFragmentBinding
+import ru.somarov.marathon.databinding.RunnerCardFragmentBinding
+import ru.somarov.marathon.ui.main.plugin.runner_card.CardViewModel
+
+class LoginFragment : Fragment() {
+
+    companion object {
+        fun newInstance() =
+            LoginFragment()
+    }
+
+    private lateinit var loginViewModel: LoginViewModel
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory(
+            LoginRepository(
+                runnerDao = MarathonDatabase.getDatabase(requireContext()).runnerDao,
+                genderDao = MarathonDatabase.getDatabase(requireContext()).genderDao,
+                dataSource = RemoteDataSource(ServiceBuilder.buildService(RemoteService::class.java))
+            )
+        )).get(LoginViewModel::class.java)
+
+        val binding: LoginFragmentBinding = DataBindingUtil.inflate(
+            inflater, R.layout.login_fragment, container, false)
+
+        binding.viewModel = loginViewModel
+        binding.lifecycleOwner = this
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun updateUiWithUser(model: LoggedInUserView) {
+        val welcome = getString(R.string.welcome) + model.displayName
+        // TODO : initiate successful logged in experience
+        val appContext = context?.applicationContext ?: return
+        Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
+    }
+
+    private fun showLoginFailed(@StringRes errorString: Int) {
+        val appContext = context?.applicationContext ?: return
+        Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
+    }
+}

@@ -2,6 +2,7 @@ package ru.somarov.marathon.backend.main.core.db.entity
 
 import androidx.room.*
 import androidx.room.ForeignKey.CASCADE
+import java.util.*
 
 @Entity(tableName = "runner",
         foreignKeys = [
@@ -15,9 +16,9 @@ data class Runner(
     var id_gender: String,
     @ColumnInfo(name = "dateOfBirth")
     var birthday: String,
-    var password: String,
+    var token: String?,
     var countryCode: String
 ) {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     var id: Int? = null
 }

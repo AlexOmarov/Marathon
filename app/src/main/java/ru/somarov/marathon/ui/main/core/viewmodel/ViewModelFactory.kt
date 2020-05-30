@@ -2,14 +2,20 @@ package ru.somarov.marathon.ui.main.core.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import ru.somarov.marathon.backend.main.plugin.runner_card.repository.RunnerCardRepo
+import ru.somarov.marathon.backend.main.plugin.runner_card.CardRepo
 import java.lang.IllegalArgumentException
 
-class ViewModelFactory(private val repo: RunnerCardRepo): ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        /*if(modelClass.isAssignableFrom(RunnerCardViewModel::class.java)) {
-            return RunnerCardViewModel(repo) as T
+class ViewModelFactory<V: ViewModel> : ViewModelProvider.Factory {
+
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        /*if (modelClass.isAssignableFrom(V::class.java)) {
+            return LoginViewModel(
+                loginRepository = LoginRepository(
+                    dataSource = LoginDataSource()
+                )
+            ) as T
         }*/
-        throw IllegalArgumentException("Unknown view model class")
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

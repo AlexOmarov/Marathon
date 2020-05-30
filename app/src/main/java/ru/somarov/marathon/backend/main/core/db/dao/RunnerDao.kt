@@ -15,4 +15,13 @@ interface RunnerDao: BaseDao<Runner> {
     @Query("SELECT * from runner ORDER BY dateOfBirth")
     fun getRunners(): LiveData<List<Runner>>
 
+    @Query("SELECT * from runner")
+    fun getRunner(): LiveData<Runner>
+
+    @Query("SELECT * from runner where id = :id")
+    fun getRunner(id: Int): LiveData<Runner>
+
+    @Query("UPDATE Runner set token = null")
+    fun logout()
+
 }
