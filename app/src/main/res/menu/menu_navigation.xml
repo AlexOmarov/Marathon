@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/destination_runner_list"
+        android:icon="@drawable/ic_perm_contact_calendar_black_24dp"
+        android:title="Runners"/>
+    <item
         android:id="@+id/destination_runner_card"
         android:icon="@drawable/ic_home"
-        android:title="Home"/>
+        android:title="Charity"/>
     <item
         android:id="@+id/destination_login"
         android:icon="@drawable/ic_home"
-        android:title="Camera"/>
+        android:title="Map"/>
 </menu>

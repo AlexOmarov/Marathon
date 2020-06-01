@@ -1,4 +1,4 @@
-package ru.somarov.marathon.backend.main.plugin.runner_card
+package ru.somarov.marathon.backend.main.plugin.runner_list
 
 import androidx.lifecycle.LiveData
 import ru.somarov.marathon.backend.main.core.db.dao.GenderDao
@@ -8,7 +8,7 @@ import ru.somarov.marathon.backend.main.core.db.entity.Runner
 import ru.somarov.marathon.backend.main.core.remote.RemoteDataSource
 
 
-class CardRepo(private val runnerDao: RunnerDao, private val genderDao: GenderDao, private val remoteSource: RemoteDataSource) {
+class ListRepo(private val runnerDao: RunnerDao, private val genderDao: GenderDao, private val remoteSource: RemoteDataSource) {
 
     // Marathon in remote
     suspend fun getMarathons() = remoteSource.getRemoteMarathons()
@@ -31,18 +31,9 @@ class CardRepo(private val runnerDao: RunnerDao, private val genderDao: GenderDa
         genderDao.insert(gender)
     }
 
-    suspend fun getRunner(id: Int): LiveData<Runner> {
-        return runnerDao.getRunner(id)
+    suspend fun getRunner(): LiveData<Runner> {
+        return runnerDao.getRunner()
     }
-
-    suspend fun getGender(name: String): Gender {
-        return genderDao.getGender(name)
-    }
-
-    fun getRunners(): LiveData<List<Runner>> {
-        return runnerDao.getRunners()
-    }
-
     suspend fun logout() {
         return runnerDao.logout()
     }

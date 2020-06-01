@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
-    app:startDestination="@id/destination_login">
+    app:startDestination="@id/destination_runner_list">
 
     <fragment
         android:id="@+id/destination_runner_card"
@@ -11,14 +11,14 @@
         android:label="destination_runner_card"
         tools:layout="@layout/runner_card_fragment">
         <argument
-            android:name="kek"
-            android:defaultValue="sdgsdg"
-            app:argType="string" />
+            android:name="id"
+            android:defaultValue="0"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/destination_login"
         android:name="ru.somarov.marathon.ui.main.plugin.login.LoginFragment"
-        android:label="destination_login"
+        android:label="@string/login"
         tools:layout="@layout/login_fragment">
         <action
             android:id="@+id/login-runner_card"
@@ -31,5 +31,14 @@
             android:name="argOne"
             android:defaultValue="0"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_runner_list"
+        android:name="ru.somarov.marathon.ui.main.plugin.runner_list.ListFragment"
+        android:label="@string/runners"
+        tools:layout="@layout/runner_list_fragment" >
+        <action
+            android:id="@+id/runner_list_runner"
+            app:destination="@id/destination_runner_card" />
     </fragment>
 </navigation>

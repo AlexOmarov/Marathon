@@ -21,10 +21,8 @@ class CardViewModel(application: Application) : AndroidViewModel(application) {
 
     lateinit var runner: LiveData<Runner>
 
-    init {
-        viewModelScope.launch {
-            runner = cardRepo.getRunner()
-        }
+    fun setRunner(id: Int) = viewModelScope.launch {
+        runner = cardRepo.getRunner(id)
     }
 
     fun logout() = viewModelScope.launch {

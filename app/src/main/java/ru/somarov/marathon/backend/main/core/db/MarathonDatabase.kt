@@ -12,7 +12,7 @@ import ru.somarov.marathon.backend.main.core.db.dao.RunnerDao
 import ru.somarov.marathon.backend.main.core.db.entity.Gender
 import ru.somarov.marathon.backend.main.core.db.entity.Runner
 
-@Database(entities = [Runner::class, Gender::class], version = 1, exportSchema = false)
+@Database(entities = [Runner::class, Gender::class], version = 2, exportSchema = false)
 abstract class MarathonDatabase: RoomDatabase() {
     abstract val runnerDao: RunnerDao
     abstract val genderDao: GenderDao
@@ -24,7 +24,7 @@ abstract class MarathonDatabase: RoomDatabase() {
 
         val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                database.execSQL("ALTER TABLE Runner ADD COLUMN password TEXT NOT NULL DEFAULT 'KEK'")
+                database.execSQL("INSERT INTO Gender values('MALE'), ('FEMALE')")
             }
         }
 
@@ -38,7 +38,7 @@ abstract class MarathonDatabase: RoomDatabase() {
                 val instance = Room.databaseBuilder(context, MarathonDatabase::class.java,
                     "marathon_database")
                     //.setJournalMode(JournalMode.TRUNCATE)
-                    // .addMigrations(MIGRATION_1_2)
+                    .addMigrations(MIGRATION_1_2)
                     .build()
                 INSTANCE = instance
                 return instance

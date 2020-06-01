@@ -46,7 +46,7 @@ class LoginFragment : Fragment() {
             inflater, R.layout.login_fragment, container, false)
         binding.login.setOnClickListener {
             loginViewModel.login()
-            val navaction = LoginFragmentDirections.loginRunnerCard("kekeke")
+            val navaction = LoginFragmentDirections.loginRunnerCard(0)
             Navigation.findNavController(it).navigate(navaction)
         }
 

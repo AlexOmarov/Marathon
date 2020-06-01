@@ -1,4 +1,4 @@
-package ru.somarov.marathon.ui.main.plugin.runner_card
+package ru.somarov.marathon.ui.main.plugin.runner_list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,42 +8,40 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import ru.somarov.marathon.R
 import ru.somarov.marathon.backend.main.plugin.runner_card.CardWorker
 import ru.somarov.marathon.databinding.RunnerCardFragmentBinding
-import ru.somarov.marathon.ui.main.plugin.runner_list.Adapter
+import ru.somarov.marathon.databinding.RunnerListFragmentBinding
 
-class CardFragment : Fragment() {
+class ListFragment : Fragment() {
 
     companion object {
         fun newInstance() =
-            CardFragment()
+            ListFragment()
     }
 
-    private lateinit var viewModel: CardViewModel
+    private lateinit var viewModel: ListViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
 
-        viewModel = ViewModelProvider(this)[CardViewModel::class.java]
+        viewModel = ViewModelProvider(this)[ListViewModel::class.java]
 
-        arguments?.let {
-            val safeArgs = CardFragmentArgs.fromBundle(it)
-            viewModel.setRunner(safeArgs.id)
-        }
+        val binding: RunnerListFragmentBinding = DataBindingUtil.inflate(
+            inflater, R.layout.runner_list_fragment, container, false)
 
-        val binding: RunnerCardFragmentBinding = DataBindingUtil.inflate(
-            inflater, R.layout.runner_card_fragment, container, false)
-
-        /*binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = Adapter(ArrayList())*/
-
-        viewModel.runner.observe(viewLifecycleOwner, Observer {
-            binding.runner = it
+        viewModel.runners.observe(viewLifecycleOwner, Observer { runners ->
+            binding.recyclerView.also {
+                it.adapter = Adapter(runners)
+            }
         })
 
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = Adapter(ArrayList())
+        binding.model = viewModel
         binding.lifecycleOwner = this
 
         return binding.root
