@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ru.somarov.marathon.ui.main.plugin.login.LoginFragment">
 
     <data>
 
@@ -17,8 +18,7 @@
         android:paddingLeft="@dimen/fragment_horizontal_margin"
         android:paddingTop="@dimen/fragment_vertical_margin"
         android:paddingRight="@dimen/fragment_horizontal_margin"
-        android:paddingBottom="@dimen/fragment_vertical_margin"
-        tools:context=".ui.main.plugin.login.LoginFragment">
+        android:paddingBottom="@dimen/fragment_vertical_margin">
 
         <EditText
             android:id="@+id/username"

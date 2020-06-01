@@ -2,7 +2,6 @@ package ru.somarov.marathon.ui.main.plugin.login
 
 import android.util.Patterns
 import android.view.View
-import androidx.databinding.Bindable
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import ru.somarov.marathon.backend.main.core.db.entity.Runner
@@ -12,8 +11,6 @@ import ru.somarov.marathon.backend.main.plugin.login.LoginRepository
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
     val password = MutableLiveData("")
-
-
     val username = MutableLiveData("")
 
 

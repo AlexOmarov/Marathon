@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/destination_login">
+
+    <fragment
+        android:id="@+id/destination_runner_card"
+        android:name="ru.somarov.marathon.ui.main.plugin.runner_card.CardFragment"
+        android:label="destination_runner_card"
+        tools:layout="@layout/runner_card_fragment">
+        <argument
+            android:name="kek"
+            android:defaultValue="sdgsdg"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_login"
+        android:name="ru.somarov.marathon.ui.main.plugin.login.LoginFragment"
+        android:label="destination_login"
+        tools:layout="@layout/login_fragment">
+        <action
+            android:id="@+id/login-runner_card"
+            app:destination="@id/destination_runner_card"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="argOne"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+</navigation>

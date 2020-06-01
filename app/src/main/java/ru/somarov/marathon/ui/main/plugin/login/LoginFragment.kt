@@ -1,24 +1,15 @@
 package ru.somarov.marathon.ui.main.plugin.login
 
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import kotlinx.coroutines.coroutineScope
+import androidx.navigation.Navigation
 import ru.somarov.marathon.R
 import ru.somarov.marathon.backend.main.core.db.MarathonDatabase
 import ru.somarov.marathon.backend.main.core.remote.RemoteDataSource
@@ -26,10 +17,7 @@ import ru.somarov.marathon.backend.main.core.remote.RemoteService
 import ru.somarov.marathon.backend.main.core.remote.ServiceBuilder
 import ru.somarov.marathon.backend.main.plugin.login.LoginRepository
 
-import ru.somarov.marathon.backend.main.plugin.login.dto.LoggedInUserView
 import ru.somarov.marathon.databinding.LoginFragmentBinding
-import ru.somarov.marathon.databinding.RunnerCardFragmentBinding
-import ru.somarov.marathon.ui.main.plugin.runner_card.CardViewModel
 
 class LoginFragment : Fragment() {
 
@@ -56,6 +44,11 @@ class LoginFragment : Fragment() {
 
         val binding: LoginFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.login_fragment, container, false)
+        binding.login.setOnClickListener {
+            loginViewModel.login()
+            val navaction = LoginFragmentDirections.loginRunnerCard("kekeke")
+            Navigation.findNavController(it).navigate(navaction)
+        }
 
         binding.viewModel = loginViewModel
         binding.lifecycleOwner = this
@@ -67,8 +60,8 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome) + model.displayName
+    private fun updateUiWithUser() {
+        val welcome = getString(R.string.welcome) + "Kek"
         // TODO : initiate successful logged in experience
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()

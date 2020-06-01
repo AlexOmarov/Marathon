@@ -14,21 +14,15 @@
         android:background="?colorPrimary"
         android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"/>
 
-    <FrameLayout
-        android:id="@+id/fragment_frame_layout"
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp">
 
     <fragment
         android:id="@+id/nav_host_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:tag="fragment_tag"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:navGraph="@navigation/nav"
         app:defaultNavHost="true" />
-    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
