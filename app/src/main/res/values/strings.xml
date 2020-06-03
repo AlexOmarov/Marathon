@@ -17,4 +17,10 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="shr_hint_username">Email</string>
+    <string name="org_info">Info</string>
+    <string name="organizers">Organizers</string>
+    <string name="calculators">Calculators</string>
+    <string name="sponsors">Sponsors</string>
+    <string name="map">Map</string>
+    <string name="marathons">Marathons</string>
 </resources>

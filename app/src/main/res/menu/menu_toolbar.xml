@@ -3,5 +3,17 @@
     <item
         android:id="@+id/destination_login"
         android:icon="@drawable/ic_launcher_background"
-        android:title="Login"/>
+        android:title="@string/login"/>
+    <item
+        android:id="@+id/destination_calc"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="@string/calculators"/>
+    <item
+        android:id="@+id/destination_organizers"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="@string/organizers"/>
+    <item
+        android:id="@+id/destination_info"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="@string/org_info"/>
 </menu>

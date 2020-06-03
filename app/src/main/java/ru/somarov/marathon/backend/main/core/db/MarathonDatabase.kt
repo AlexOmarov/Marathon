@@ -42,6 +42,15 @@ abstract class MarathonDatabase: RoomDatabase() {
                     "marathon_database")
                     //.setJournalMode(JournalMode.TRUNCATE)
                     //.addMigrations(MIGRATION_1_2)
+                    .addCallback(object : Callback() {
+                        override fun onCreate(db: SupportSQLiteDatabase) {
+                            super.onCreate(db)
+                            // insert the data on the IO Thread
+                            Thread {
+                                //getDatabase(context).runnerDao.insert()
+                            }.start()
+                        }
+                    })
                     .build()
                 INSTANCE = instance
                 return instance
