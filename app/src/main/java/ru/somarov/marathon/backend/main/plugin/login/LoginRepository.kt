@@ -1,5 +1,6 @@
 package ru.somarov.marathon.backend.main.plugin.login
 
+import ru.somarov.marathon.backend.main.core.db.dao.CountryDao
 import ru.somarov.marathon.backend.main.core.db.dao.GenderDao
 import ru.somarov.marathon.backend.main.core.db.dao.RunnerDao
 import ru.somarov.marathon.backend.main.core.db.entity.Runner
@@ -12,7 +13,12 @@ import java.util.*
  * maintains an in-memory cache of login status and user credentials information.
  */
 
-class LoginRepository(val dataSource: RemoteDataSource, private val runnerDao: RunnerDao, val genderDao: GenderDao) {
+class LoginRepository(
+    val dataSource: RemoteDataSource,
+    private val runnerDao: RunnerDao,
+    val genderDao: GenderDao,
+    val countryDao: CountryDao
+) {
 
     suspend fun logout(id: Int) {
         dataSource.logout(id)
@@ -24,9 +30,9 @@ class LoginRepository(val dataSource: RemoteDataSource, private val runnerDao: R
         var runner: Runner? = null
 
         if (result is Result.Success) {
-            val dto = result.data
+           /* val dto = result.data
             runner = runnerDao.getRunner(runnerDao.insert(Runner(birthday = dto.birthday, countryCode = dto.countryCode,
-            email = dto.email, id_gender = dto.gender, token = UUID.randomUUID().toString()).also { it.id = dto.id }).toInt()).value
+            email = dto.email, id_gender = dto.gender, token = UUID.randomUUID().toString(), id_country = dto.country).also { it.id = dto.id }).toInt()).value*/
 
         }
         return runner

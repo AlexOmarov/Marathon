@@ -7,15 +7,18 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.impl.WorkDatabaseMigrations.MIGRATION_1_2
+import ru.somarov.marathon.backend.main.core.db.dao.CountryDao
 import ru.somarov.marathon.backend.main.core.db.dao.GenderDao
 import ru.somarov.marathon.backend.main.core.db.dao.RunnerDao
+import ru.somarov.marathon.backend.main.core.db.entity.Country
 import ru.somarov.marathon.backend.main.core.db.entity.Gender
 import ru.somarov.marathon.backend.main.core.db.entity.Runner
 
-@Database(entities = [Runner::class, Gender::class], version = 2, exportSchema = false)
+@Database(entities = [Runner::class, Gender::class, Country::class], version = 1, exportSchema = false)
 abstract class MarathonDatabase: RoomDatabase() {
     abstract val runnerDao: RunnerDao
     abstract val genderDao: GenderDao
+    abstract val countryDao: CountryDao
 
     companion object {
 
@@ -38,7 +41,7 @@ abstract class MarathonDatabase: RoomDatabase() {
                 val instance = Room.databaseBuilder(context, MarathonDatabase::class.java,
                     "marathon_database")
                     //.setJournalMode(JournalMode.TRUNCATE)
-                    .addMigrations(MIGRATION_1_2)
+                    //.addMigrations(MIGRATION_1_2)
                     .build()
                 INSTANCE = instance
                 return instance

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/destination_runner_card"
         android:name="ru.somarov.marathon.ui.main.plugin.runner_card.CardFragment"
-        android:label="destination_runner_card"
+        android:label="@string/runner_card"
         tools:layout="@layout/runner_card_fragment">
         <argument
             android:name="id"

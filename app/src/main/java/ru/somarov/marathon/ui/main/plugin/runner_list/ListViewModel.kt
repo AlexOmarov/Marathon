@@ -16,31 +16,32 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
         CardRepo(
             MarathonDatabase.getDatabase(application).runnerDao,
             MarathonDatabase.getDatabase(application).genderDao,
+            MarathonDatabase.getDatabase(application).countryDao,
             RemoteDataSource(ServiceBuilder.buildService(RemoteService::class.java))
         )
 
 
     var runners: LiveData<List<Runner>> = cardRepo.getRunners()
 
-/*    init {
+    init {
         viewModelScope.launch {
             cardRepo.insertRunner(
                 Runner(email="shtil.a@yandex.ru",
                     id_gender = cardRepo.getGender("MALE").id,
                     birthday = "1997-10-13",
-                    countryCode = "RUS", token = null))
+                    countryCode = "RUS", token = null, id_country = cardRepo.getCountry("RUSSIA").id, age = 30))
             cardRepo.insertRunner(
                 Runner(email="shtil2.a@yandex.ru",
                     id_gender = cardRepo.getGender("MALE").id,
                     birthday = "1997-10-13",
-                    countryCode = "RUS", token = null))
+                    countryCode = "RUS", token = null, id_country = cardRepo.getCountry("RUSSIA").id, age = 30))
             cardRepo.insertRunner(
                 Runner(email="shtil3.a@yandex.ru",
                     id_gender = cardRepo.getGender("MALE").id,
                     birthday = "1997-10-13",
-                    countryCode = "RUS", token = null))
+                    countryCode = "RUS", token = null, id_country = cardRepo.getCountry("RUSSIA").id, age = 30))
         }
-    }*/
+    }
 
     fun logout() = viewModelScope.launch {
         cardRepo.logout()

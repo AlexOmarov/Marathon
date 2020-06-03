@@ -16,6 +16,7 @@ class CardViewModel(application: Application) : AndroidViewModel(application) {
         CardRepo(
             MarathonDatabase.getDatabase(application).runnerDao,
             MarathonDatabase.getDatabase(application).genderDao,
+            MarathonDatabase.getDatabase(application).countryDao,
             RemoteDataSource(ServiceBuilder.buildService(RemoteService::class.java))
         )
 

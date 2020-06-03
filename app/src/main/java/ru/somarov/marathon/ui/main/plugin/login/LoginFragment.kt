@@ -38,6 +38,7 @@ class LoginFragment : Fragment() {
             LoginRepository(
                 runnerDao = MarathonDatabase.getDatabase(requireContext()).runnerDao,
                 genderDao = MarathonDatabase.getDatabase(requireContext()).genderDao,
+                countryDao = MarathonDatabase.getDatabase(requireContext()).countryDao,
                 dataSource = RemoteDataSource(ServiceBuilder.buildService(RemoteService::class.java))
             )
         )).get(LoginViewModel::class.java)
