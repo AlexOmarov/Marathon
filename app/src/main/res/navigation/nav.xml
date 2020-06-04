@@ -62,4 +62,26 @@
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
     </fragment>
+    <fragment
+        android:id="@+id/destination_marathon_list"
+        android:name="ru.somarov.marathon.ui.main.plugin.marathon_list.MarathonListFragment"
+        android:label="@string/marathons"
+        tools:layout="@layout/marathon_list_fragment">
+        <action
+            android:id="@+id/marathonListMarathon"
+            app:destination="@id/destination_marathon_card" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_marathon_card"
+        android:name="ru.somarov.marathon.ui.main.plugin.marathon_card.MarathonCardFragment"
+        android:label="@string/marathon"
+        tools:layout="@layout/marathon_card_fragment">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_organizers_list"
+        android:name="ru.somarov.marathon.ui.main.plugin.organizers_list.OrganizersListFragment"
+        android:label="OrganizersListFragment" />
 </navigation>

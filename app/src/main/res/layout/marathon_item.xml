@@ -3,10 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
         <variable
-            name="runner"
-            type="ru.somarov.marathon.backend.main.core.db.entity.Runner" />
+            name="marathon"
+            type="ru.somarov.marathon.backend.main.core.db.entity.Marathon" />
     </data>
 
     <LinearLayout
@@ -47,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:paddingTop="16dp"
-                    android:text="@{runner.email}" />
+                    android:text="@{marathon.name}" />
 
                 <TextView
                     android:id="@+id/mtrl_list_item_secondary_text"
@@ -55,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="2"
                     android:textColor="@color/secondaryTextColor"
-                    android:text="@{runner.birthday}" />
+                    android:text="@{Integer.toString(marathon.id_country)}" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

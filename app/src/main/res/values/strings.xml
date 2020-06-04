@@ -24,4 +24,6 @@
     <string name="sponsor">Sponsor</string>
     <string name="map">Map</string>
     <string name="marathons">Marathons</string>
+    <string name="marathon">Marathon</string>
+    <string name="double_parameter">%1$s, %2$s</string>
 </resources>

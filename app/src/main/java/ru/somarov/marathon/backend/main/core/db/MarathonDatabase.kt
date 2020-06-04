@@ -69,7 +69,7 @@ abstract class MarathonDatabase : RoomDatabase() {
                                 genderDao.insert(Gender("MALE"))
                                 genderDao.insert(Gender("FEMALE"))
 
-                                countryDao.insert(
+                                val rus = countryDao.insert(
                                     Country(
                                         id = 1,
                                         code = "RUS",
@@ -77,7 +77,7 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         img = "russia"
                                     )
                                 )
-                                countryDao.insert(
+                                val usa = countryDao.insert(
                                     Country(
                                         id = 2,
                                         code = "USA",
@@ -85,7 +85,7 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         img = "usa"
                                     )
                                 )
-                                countryDao.insert(
+                                val can = countryDao.insert(
                                     Country(
                                         id = 3,
                                         code = "CAN",

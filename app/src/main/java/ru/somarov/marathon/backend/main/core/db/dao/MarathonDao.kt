@@ -8,8 +8,10 @@ import ru.somarov.marathon.backend.main.core.db.entity.Marathon
 
 @Dao
 interface MarathonDao: BaseDao<Marathon> {
-    @Query("SELECT * from Marathon where id = :name")
+    @Query("SELECT * from Marathon where name = :name")
     fun getMarathon(name: String): LiveData<Marathon>
+    @Query("SELECT * from Marathon where id = :id")
+    fun getMarathon(id: Int): LiveData<Marathon>
     @Query("SELECT * from Marathon")
     fun getMarathons(): LiveData<List<Marathon>>
 }

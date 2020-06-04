@@ -48,6 +48,10 @@ class CardRepo(
         return marathonDao.getMarathon(name)
     }
 
+    fun getMarathon(id: Int): LiveData<Marathon> {
+        return marathonDao.getMarathon(id)
+    }
+
     fun getMarathons(): LiveData<List<Marathon>> {
         return marathonDao.getMarathons()
     }
