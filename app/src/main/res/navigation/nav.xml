@@ -41,4 +41,25 @@
             android:id="@+id/runner_list_runner"
             app:destination="@id/destination_runner_card" />
     </fragment>
+    <fragment
+        android:id="@+id/destination_sponsor_card"
+        android:name="ru.somarov.marathon.ui.main.plugin.sponsor_card.SponsorCardFragment"
+        android:label="@string/sponsor"
+        tools:layout="@layout/sponsor_card_fragment">
+        <argument
+            android:name="id"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_sponsor_list"
+        android:name="ru.somarov.marathon.ui.main.plugin.sponsor_list.SponsorListFragment"
+        android:label="@string/sponsors"
+        tools:layout="@layout/sponsor_list_fragment">
+        <action
+            android:id="@+id/sponsorListSponsor"
+            app:destination="@id/destination_sponsor_card"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
 </navigation>

@@ -1,18 +1,17 @@
-package ru.somarov.marathon.ui.main.plugin.runner_card
+package ru.somarov.marathon.ui.main.plugin.sponsor_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import ru.somarov.marathon.ui.main.plugin.sponsor_card.SponsorCardViewModel
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
  * Required given LoginViewModel has a non-empty constructor
  */
-class CardViewModelFactory : ViewModelProvider.Factory {
+class SponsorListViewModelFactory : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SponsorCardViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(SponsorListViewModel::class.java)) {
             /*return CardViewModel(
                  = LoginRepository(
                     dataSource = LoginDataSource()

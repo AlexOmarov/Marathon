@@ -31,8 +31,8 @@ class ListRepo(private val runnerDao: RunnerDao, private val genderDao: GenderDa
         genderDao.insert(gender)
     }
 
-    suspend fun getRunner(): LiveData<Runner> {
-        return runnerDao.getRunner()
+    suspend fun getRunner(name: String): LiveData<Runner> {
+        return runnerDao.getRunner(name)
     }
     suspend fun logout() {
         return runnerDao.logout()

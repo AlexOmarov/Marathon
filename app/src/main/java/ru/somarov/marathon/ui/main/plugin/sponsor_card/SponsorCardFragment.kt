@@ -1,4 +1,4 @@
-package ru.somarov.marathon.ui.main.plugin.runner_card
+package ru.somarov.marathon.ui.main.plugin.sponsor_card
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,36 +13,36 @@ import androidx.work.WorkManager
 import ru.somarov.marathon.R
 import ru.somarov.marathon.backend.main.plugin.runner_card.CardWorker
 import ru.somarov.marathon.databinding.RunnerCardFragmentBinding
-import ru.somarov.marathon.ui.main.plugin.sponsor_card.SponsorCardFragment
-import ru.somarov.marathon.ui.main.plugin.sponsor_card.SponsorCardViewModel
+import ru.somarov.marathon.databinding.SponsorCardFragmentBinding
+import ru.somarov.marathon.ui.main.plugin.runner_card.CardFragment
 
-class CardFragment : Fragment() {
+class SponsorCardFragment : Fragment() {
 
     companion object {
         fun newInstance() =
-            SponsorCardFragment()
+            CardFragment()
     }
 
-    private lateinit var viewModel: CardViewModel
+    private lateinit var viewModelSponsor: SponsorCardViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
 
-        viewModel = ViewModelProvider(this)[CardViewModel::class.java]
+        viewModelSponsor = ViewModelProvider(this)[SponsorCardViewModel::class.java]
 
         arguments?.let {
-            val safeArgs = CardFragmentArgs.fromBundle(it)
-            viewModel.setRunner(safeArgs.id)
+            val safeArgs = SponsorCardFragmentArgs.fromBundle(it)
+            viewModelSponsor.setSponsor(safeArgs.id)
         }
 
-        val binding: RunnerCardFragmentBinding = DataBindingUtil.inflate(
-            inflater, R.layout.runner_card_fragment, container, false)
+        val binding: SponsorCardFragmentBinding = DataBindingUtil.inflate(
+            inflater, R.layout.sponsor_card_fragment, container, false)
 
         /*binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = Adapter(ArrayList())*/
 
-        viewModel.runner.observe(viewLifecycleOwner, Observer {
-            binding.runner = it
+        viewModelSponsor.sponsor.observe(viewLifecycleOwner, Observer {
+            binding.sponsor = it
         })
 
         binding.lifecycleOwner = this

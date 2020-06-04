@@ -15,8 +15,8 @@ interface RunnerDao: BaseDao<Runner> {
     @Query("SELECT * from runner ORDER BY dateOfBirth")
     fun getRunners(): LiveData<List<Runner>>
 
-    @Query("SELECT * from runner")
-    fun getRunner(): LiveData<Runner>
+    @Query("SELECT * from runner WHERE name = :name")
+    fun getRunner(name: String): LiveData<Runner>
 
     @Query("SELECT * from runner where id = :id")
     fun getRunner(id: Int): LiveData<Runner>

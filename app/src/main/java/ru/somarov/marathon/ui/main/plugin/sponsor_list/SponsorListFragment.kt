@@ -1,4 +1,4 @@
-package ru.somarov.marathon.ui.main.plugin.runner_card
+package ru.somarov.marathon.ui.main.plugin.sponsor_list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,43 +8,43 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import ru.somarov.marathon.R
 import ru.somarov.marathon.backend.main.plugin.runner_card.CardWorker
 import ru.somarov.marathon.databinding.RunnerCardFragmentBinding
-import ru.somarov.marathon.ui.main.plugin.sponsor_card.SponsorCardFragment
-import ru.somarov.marathon.ui.main.plugin.sponsor_card.SponsorCardViewModel
+import ru.somarov.marathon.databinding.RunnerListFragmentBinding
+import ru.somarov.marathon.databinding.SponsorListFragmentBinding
+import ru.somarov.marathon.ui.main.plugin.runner_list.Adapter
+import ru.somarov.marathon.ui.main.plugin.runner_list.ListViewModel
 
-class CardFragment : Fragment() {
+class SponsorListFragment : Fragment() {
 
     companion object {
         fun newInstance() =
-            SponsorCardFragment()
+            SponsorListFragment()
     }
 
-    private lateinit var viewModel: CardViewModel
+    private lateinit var viewModel: SponsorListViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
 
-        viewModel = ViewModelProvider(this)[CardViewModel::class.java]
+        viewModel = ViewModelProvider(this)[SponsorListViewModel::class.java]
 
-        arguments?.let {
-            val safeArgs = CardFragmentArgs.fromBundle(it)
-            viewModel.setRunner(safeArgs.id)
-        }
+        val binding: SponsorListFragmentBinding = DataBindingUtil.inflate(
+            inflater, R.layout.sponsor_list_fragment, container, false)
 
-        val binding: RunnerCardFragmentBinding = DataBindingUtil.inflate(
-            inflater, R.layout.runner_card_fragment, container, false)
-
-        /*binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = Adapter(ArrayList())*/
-
-        viewModel.runner.observe(viewLifecycleOwner, Observer {
-            binding.runner = it
+        viewModel.sponsors.observe(viewLifecycleOwner, Observer { sponsors ->
+            binding.recyclerView.also {
+                it.adapter = Adapter(sponsors)
+            }
         })
 
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = Adapter(ArrayList())
+            // binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
         return binding.root

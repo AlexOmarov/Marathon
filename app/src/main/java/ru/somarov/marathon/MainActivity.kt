@@ -9,8 +9,6 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.main_activity.*
-import ru.somarov.marathon.ui.main.plugin.login.LoginFragment
-import ru.somarov.marathon.ui.main.plugin.runner_card.CardFragment
 
 class MainActivity : AppCompatActivity() {
 

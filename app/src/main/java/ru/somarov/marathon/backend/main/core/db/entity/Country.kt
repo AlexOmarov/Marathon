@@ -10,5 +10,6 @@ data class Country(
     @PrimaryKey
     var id: Int,
     var name: String,
+    var code: String,
     var img: String
 )

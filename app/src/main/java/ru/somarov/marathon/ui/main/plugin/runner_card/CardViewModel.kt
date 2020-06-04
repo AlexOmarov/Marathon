@@ -17,10 +17,13 @@ class CardViewModel(application: Application) : AndroidViewModel(application) {
             MarathonDatabase.getDatabase(application).runnerDao,
             MarathonDatabase.getDatabase(application).genderDao,
             MarathonDatabase.getDatabase(application).countryDao,
+            MarathonDatabase.getDatabase(application).marathonDao,
+            MarathonDatabase.getDatabase(application).sponsorDao,
+            MarathonDatabase.getDatabase(application).subscriptionDao,
             RemoteDataSource(ServiceBuilder.buildService(RemoteService::class.java))
         )
 
-    lateinit var runner: LiveData<Runner>
+    var runner: LiveData<Runner> = MutableLiveData()
 
     fun setRunner(id: Int) = viewModelScope.launch {
         runner = cardRepo.getRunner(id)

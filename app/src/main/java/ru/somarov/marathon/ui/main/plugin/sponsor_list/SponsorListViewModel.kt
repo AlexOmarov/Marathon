@@ -1,4 +1,4 @@
-package ru.somarov.marathon.ui.main.plugin.runner_list
+package ru.somarov.marathon.ui.main.plugin.sponsor_list
 
 import android.app.Application
 import androidx.lifecycle.*
@@ -10,7 +10,7 @@ import ru.somarov.marathon.backend.main.core.remote.RemoteService
 import ru.somarov.marathon.backend.main.core.remote.ServiceBuilder
 import ru.somarov.marathon.backend.main.plugin.runner_card.CardRepo
 
-class ListViewModel(application: Application) : AndroidViewModel(application) {
+class SponsorListViewModel(application: Application) : AndroidViewModel(application) {
 
     private val cardRepo: CardRepo =
         CardRepo(
@@ -23,17 +23,12 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
             RemoteDataSource(ServiceBuilder.buildService(RemoteService::class.java))
         )
 
-
-    var runners: LiveData<List<Runner>> = cardRepo.getRunners()
+    var sponsors: LiveData<List<Sponsor>> = cardRepo.getSponsors()
 
     init {
         viewModelScope.launch {
-
+            //sponsors = cardRepo.getSponsors()
         }
-    }
-
-    fun logout() = viewModelScope.launch {
-        cardRepo.logout()
     }
 
 

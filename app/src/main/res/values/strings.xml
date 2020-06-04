@@ -21,6 +21,7 @@
     <string name="organizers">Organizers</string>
     <string name="calculators">Calculators</string>
     <string name="sponsors">Sponsors</string>
+    <string name="sponsor">Sponsor</string>
     <string name="map">Map</string>
     <string name="marathons">Marathons</string>
 </resources>
