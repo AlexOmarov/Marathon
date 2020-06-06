@@ -7,9 +7,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import ru.somarov.marathon.R
 import ru.somarov.marathon.backend.main.core.db.MarathonDatabase
@@ -54,8 +56,18 @@ class RegistrationFragment : Fragment() {
             Navigation.findNavController(it).navigate(navaction)
         }
 
-        binding.countries =
-        binding.genders =
+        regViewModel.countries.observe(viewLifecycleOwner, Observer {
+            val adapter = ArrayAdapter(requireContext(),
+                android.R.layout.simple_spinner_item, it)
+            binding.countries.adapter = adapter
+        })
+
+        regViewModel.genders.observe(viewLifecycleOwner, Observer {
+            val adapter = ArrayAdapter(requireContext(),
+                android.R.layout.simple_spinner_item, it)
+            binding.genders.adapter = adapter
+        })
+
         binding.viewModel = regViewModel
         binding.lifecycleOwner = this
 

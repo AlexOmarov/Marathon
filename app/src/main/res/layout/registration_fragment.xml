@@ -75,7 +75,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwordWrapper"
+            android:id="@+id/nameWrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
@@ -86,11 +86,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/usernameWrapper"
+            app:layout_constraintTop_toBottomOf="@+id/passwordWrapper"
             app:layout_constraintVertical_bias="0.07999998">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password"
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="false"
@@ -114,7 +114,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/usernameWrapper"
+            app:layout_constraintTop_toBottomOf="@+id/nameWrapper"
             app:layout_constraintVertical_bias="0.07999998">
 
             <Spinner
@@ -126,7 +126,7 @@
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:selectAllOnFocus="true"
-                android:selectedItemPosition="@={viewModel.idCountry}"
+                android:selectedItem="@={viewModel.idCountry}"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -142,7 +142,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/usernameWrapper"
+            app:layout_constraintTop_toBottomOf="@+id/countriesWrapper"
             app:layout_constraintVertical_bias="0.07999998">
 
             <Spinner
@@ -154,7 +154,7 @@
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:selectAllOnFocus="true"
-                android:selectedItemPosition="@={viewModel.idGender}"
+                android:selectedItem="@={viewModel.idGender}"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -168,13 +168,13 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="64dp"
-            android:enabled="@{viewModel.registerAllowed}"
-            android:onClick="@{() -> viewModel.register()}"
+            android:enabled="@{viewModel.registrationAllowed}"
+            android:onClick="@{() -> viewModel.registration()}"
             android:text="@string/action_sign_in"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordWrapper"
+            app:layout_constraintTop_toBottomOf="@+id/genderWrapper"
             app:layout_constraintVertical_bias="0.2" />
 
         <ProgressBar
@@ -190,7 +190,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/passwordWrapper"
             app:layout_constraintStart_toStartOf="@+id/passwordWrapper"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="register"
             app:layout_constraintVertical_bias="0.81" />
 
 
