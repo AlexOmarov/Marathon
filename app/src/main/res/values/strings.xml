@@ -25,5 +25,7 @@
     <string name="map">Map</string>
     <string name="marathons">Marathons</string>
     <string name="marathon">Marathon</string>
+    <string name="registration">Registration</string>
+    <string name="register">register</string>
     <string name="double_parameter">%1$s, %2$s</string>
 </resources>

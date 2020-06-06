@@ -1,4 +1,4 @@
-package ru.somarov.marathon.ui.main.plugin.login
+package ru.somarov.marathon.ui.main.core.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -11,12 +11,12 @@ import ru.somarov.marathon.backend.main.plugin.login.LoginRepository
  * ViewModel provider factory to instantiate LoginViewModel.
  * Required given LoginViewModel has a non-empty constructor
  */
-class LoginViewModelFactory(private val loginRepository: LoginRepository) : ViewModelProvider.Factory {
+class AuthenticationViewModelFactory(private val loginRepository: LoginRepository) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-            return LoginViewModel(
+        if (modelClass.isAssignableFrom(AuthenticationViewModel::class.java)) {
+            return AuthenticationViewModel(
                 loginRepository = loginRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

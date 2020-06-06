@@ -1,5 +1,6 @@
 package ru.somarov.marathon.backend.main.plugin.login
 
+import androidx.lifecycle.LiveData
 import ru.somarov.marathon.backend.main.core.db.dao.CountryDao
 import ru.somarov.marathon.backend.main.core.db.dao.GenderDao
 import ru.somarov.marathon.backend.main.core.db.dao.RunnerDao
@@ -24,18 +25,9 @@ class LoginRepository(
         dataSource.logout(id)
     }
 
-    suspend fun login(username: String, password: String): Runner? {
+    suspend fun login(username: String, password: String): LiveData<Runner> {
         // handle login
-        val result = dataSource.login(username, password)
-        var runner: Runner? = null
-
-        if (result is Result.Success) {
-           /* val dto = result.data
-            runner = runnerDao.getRunner(runnerDao.insert(Runner(birthday = dto.birthday, countryCode = dto.countryCode,
-            email = dto.email, id_gender = dto.gender, token = UUID.randomUUID().toString(), id_country = dto.country).also { it.id = dto.id }).toInt()).value*/
-
-        }
-        return runner
+        return runnerDao.getRunner(username, password)
     }
 
 

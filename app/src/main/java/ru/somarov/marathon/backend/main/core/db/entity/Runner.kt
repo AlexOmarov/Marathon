@@ -21,6 +21,7 @@ data class Runner (
     var id_gender: String,
     @ColumnInfo(name = "dateOfBirth")
     var birthday: String,
+    var password: String,
     var age: Int,
     var id_country: Int,
     var token: String?

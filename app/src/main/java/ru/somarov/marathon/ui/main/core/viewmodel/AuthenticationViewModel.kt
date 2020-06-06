@@ -1,4 +1,4 @@
-package ru.somarov.marathon.ui.main.plugin.login
+package ru.somarov.marathon.ui.main.core.viewmodel
 
 import android.util.Patterns
 import android.view.View
@@ -7,8 +7,7 @@ import kotlinx.coroutines.launch
 import ru.somarov.marathon.backend.main.core.db.entity.Runner
 import ru.somarov.marathon.backend.main.plugin.login.LoginRepository
 
-
-class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
+class AuthenticationViewModel(private val loginRepository: LoginRepository): ViewModel() {
 
     val password = MutableLiveData("")
     val username = MutableLiveData("")
@@ -19,19 +18,20 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     private val usernamePasswordListener = MediatorLiveData<String>()
 
+    var runner: LiveData<Runner> = MutableLiveData()
+
     val loginAllowed: LiveData<Boolean> = Transformations.map(usernamePasswordListener) {
-        println("KEKEKE")
         return@map isLoginAllowed()
     }
 
     val progressBarEnabled: LiveData<Int> =
         Transformations.map(loginInProcess) { result ->
-        if(result) {
-            return@map View.VISIBLE
-        } else {
-            return@map View.GONE
+            if(result) {
+                return@map View.VISIBLE
+            } else {
+                return@map View.GONE
+            }
         }
-    }
 
     init {
         usernamePasswordListener.addSource(username) {
@@ -52,12 +52,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         val login = username.value
         val passwd = password.value
         if(passwd != null && login != null) {
-            val result: Runner? = loginRepository.login(login, passwd)
-            result?.let {
-
-            } ?: run {
-
-            }
+            runner = loginRepository.login(login, passwd)
         }
         _loginInProcess.value = false
     }

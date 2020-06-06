@@ -29,10 +29,6 @@ class CardViewModel(application: Application) : AndroidViewModel(application) {
         runner = cardRepo.getRunner(id)
     }
 
-    fun logout() = viewModelScope.launch {
-        cardRepo.logout()
-    }
-
 
     /*val marathons: LiveData<List<Marathon>>
     get() = liveData(Dispatchers.IO) {

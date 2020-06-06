@@ -21,6 +21,9 @@ interface RunnerDao: BaseDao<Runner> {
     @Query("SELECT * from runner where id = :id")
     fun getRunner(id: Int): LiveData<Runner>
 
+    @Query("SELECT * from runner where email = :email and password = :password")
+    fun getRunner(email: String, password: String): LiveData<Runner>
+
     @Query("UPDATE Runner set token = null")
     fun logout()
 

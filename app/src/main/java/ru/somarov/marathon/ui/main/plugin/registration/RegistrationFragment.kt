@@ -1,4 +1,4 @@
-package ru.somarov.marathon.ui.main.plugin.login
+package ru.somarov.marathon.ui.main.plugin.registration
 
 import androidx.lifecycle.ViewModelProviders
 import androidx.annotation.StringRes
@@ -17,20 +17,19 @@ import ru.somarov.marathon.backend.main.core.remote.RemoteDataSource
 import ru.somarov.marathon.backend.main.core.remote.RemoteService
 import ru.somarov.marathon.backend.main.core.remote.ServiceBuilder
 import ru.somarov.marathon.backend.main.plugin.login.LoginRepository
+import ru.somarov.marathon.backend.main.plugin.registration.RegistrationRepository
 
 import ru.somarov.marathon.databinding.LoginFragmentBinding
-import ru.somarov.marathon.ui.main.core.viewmodel.AuthenticationViewModel
-import ru.somarov.marathon.ui.main.core.viewmodel.AuthenticationViewModelFactory
-import ru.somarov.marathon.ui.main.plugin.registration.RegistrationViewModel
+import ru.somarov.marathon.databinding.RegistrationFragmentBinding
 
-class LoginFragment : Fragment() {
+class RegistrationFragment : Fragment() {
 
     companion object {
         fun newInstance() =
-            LoginFragment()
+            RegistrationFragment()
     }
 
-    private lateinit var viewModel: AuthenticationViewModel
+    private lateinit var regViewModel: RegistrationViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,32 +37,26 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        viewModel = ViewModelProviders.of(requireActivity(), AuthenticationViewModelFactory(
-            LoginRepository(
+        regViewModel = ViewModelProviders.of(this, RegistrationViewModelFactory (
+            RegistrationRepository(
                 runnerDao = MarathonDatabase.getDatabase(requireContext()).runnerDao,
-                genderDao = MarathonDatabase.getDatabase(requireContext()).genderDao,
                 countryDao = MarathonDatabase.getDatabase(requireContext()).countryDao,
-                dataSource = RemoteDataSource(ServiceBuilder.buildService(RemoteService::class.java))
+                genderDao = MarathonDatabase.getDatabase(requireContext()).genderDao
             )
-        )
-        ).get(AuthenticationViewModel::class.java)
+        )).get(RegistrationViewModel::class.java)
 
-        val binding: LoginFragmentBinding = DataBindingUtil.inflate(
-            inflater, R.layout.login_fragment, container, false)
-
-        binding.login.setOnClickListener {
-            viewModel.login()
-            val navaction = LoginFragmentDirections.loginRunnerCard(0)
-            Navigation.findNavController(it).navigate(navaction)
-        }
+        val binding: RegistrationFragmentBinding = DataBindingUtil.inflate(
+            inflater, R.layout.registration_fragment, container, false)
 
         binding.register.setOnClickListener {
-            val navaction = LoginFragmentDirections.loginRegistration()
+            regViewModel.registration()
+            val navaction = RegistrationFragmentDirections.registrationLogin()
             Navigation.findNavController(it).navigate(navaction)
         }
 
-
-        binding.viewModel = viewModel
+        binding.countries =
+        binding.genders =
+        binding.viewModel = regViewModel
         binding.lifecycleOwner = this
 
         return binding.root
