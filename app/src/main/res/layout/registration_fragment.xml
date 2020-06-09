@@ -11,10 +11,16 @@
             type="ru.somarov.marathon.ui.main.plugin.registration.RegistrationViewModel" />
     </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:paddingLeft="@dimen/fragment_horizontal_margin"
         android:paddingTop="@dimen/fragment_vertical_margin"
         android:paddingRight="@dimen/fragment_horizontal_margin"
@@ -26,14 +32,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
 
-            android:layout_marginTop="32dp"
-
             android:hint="@string/shr_hint_username"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.23000002">
+            app:layout_constraintBottom_toBottomOf="@+id/container"
+            app:layout_constraintEnd_toEndOf="@+id/container"
+            app:layout_constraintStart_toStartOf="@+id/container"
+            app:layout_constraintTop_toTopOf="@+id/container"
+            app:layout_constraintVertical_bias="0.0">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/username"
@@ -59,7 +63,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/usernameWrapper"
-            app:layout_constraintVertical_bias="0.07999998">
+            app:layout_constraintVertical_bias="0.060000002">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
@@ -70,7 +74,88 @@
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:selectAllOnFocus="true"
-                android:text="@={viewModel.password}"
+                android:text="@={viewModel.password}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cnfWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="32dp"
+            android:hint="@string/confirm_password"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordWrapper"
+            app:layout_constraintVertical_bias="0.07999998">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cnf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="false"
+                android:imeActionLabel="@string/action_sign_in_short"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:selectAllOnFocus="true"
+                android:text="@={viewModel.cnfPassword}"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ageWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="32dp"
+            android:hint="@string/age"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cnfWrapper"
+            app:layout_constraintVertical_bias="0.07999998">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="false"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                android:text="@={`` + viewModel.age}"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/birthdayWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="32dp"
+            android:hint="@string/birthday"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ageWrapper"
+            app:layout_constraintVertical_bias="0.07999998">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="false"
+                android:imeActionLabel="@string/action_sign_in_short"
+                android:imeOptions="actionDone"
+                android:inputType="date"
+                android:selectAllOnFocus="true"
+                android:text="@={viewModel.birthday}"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,11 +167,11 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="32dp"
-            android:hint="@string/prompt_password"
+            android:hint="@string/name"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordWrapper"
+            app:layout_constraintTop_toBottomOf="@+id/birthdayWrapper"
             app:layout_constraintVertical_bias="0.07999998">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -110,7 +195,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="32dp"
-            android:hint="@string/prompt_password"
+            android:hint="@string/countries"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -122,11 +207,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="false"
-                android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:selectAllOnFocus="true"
-                android:selectedItem="@={viewModel.idCountry}"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -138,7 +221,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="32dp"
-            android:hint="@string/prompt_password"
+            android:hint="@string/genders"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -150,11 +233,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="false"
-                android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:selectAllOnFocus="true"
-                android:selectedItem="@={viewModel.idGender}"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -190,10 +271,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/passwordWrapper"
             app:layout_constraintStart_toStartOf="@+id/passwordWrapper"
-            app:layout_constraintTop_toBottomOf="register"
+            app:layout_constraintTop_toBottomOf="@+id/register"
             app:layout_constraintVertical_bias="0.81" />
 
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

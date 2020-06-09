@@ -53,7 +53,7 @@ class LoginFragment : Fragment() {
 
         binding.login.setOnClickListener {
             viewModel.login()
-            val navaction = LoginFragmentDirections.loginRunnerCard(0)
+            val navaction = LoginFragmentDirections.loginPersonalCard(0)
             Navigation.findNavController(it).navigate(navaction)
         }
 

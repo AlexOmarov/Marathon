@@ -6,6 +6,7 @@
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
+    <string name="confirm_password">Confirm password</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_register">Register</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -25,7 +26,13 @@
     <string name="map">Map</string>
     <string name="marathons">Marathons</string>
     <string name="marathon">Marathon</string>
+    <string name="person">Person</string>
     <string name="registration">Registration</string>
     <string name="register">register</string>
     <string name="double_parameter">%1$s, %2$s</string>
+    <string name="age">Age</string>
+    <string name="birthday">Birthday</string>
+    <string name="name">Name</string>
+    <string name="countries">Countries</string>
+    <string name="genders">Genders</string>
 </resources>

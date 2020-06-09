@@ -11,6 +11,6 @@ interface CountryDao: BaseDao<Country> {
     @Query("SELECT * from country where name = :name")
     suspend fun getCountry(name: String): Country
     @Query("SELECT * from country")
-    suspend fun getCountries(): LiveData<List<Country>>
+    fun getCountries(): LiveData<List<Country>>
 
 }

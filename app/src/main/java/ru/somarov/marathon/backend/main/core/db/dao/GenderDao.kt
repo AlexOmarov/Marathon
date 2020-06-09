@@ -11,5 +11,5 @@ interface GenderDao: BaseDao<Gender> {
     suspend fun getGender(name: String): Gender
 
     @Query("SELECT * from Gender")
-    suspend fun getGenders(): LiveData<List<Gender>>
+    fun getGenders(): LiveData<List<Gender>>
 }

@@ -102,7 +102,8 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         birthday = "1995-12-12",
                                         id_country = countryDao.getCountry("Russia").id,
                                         token = null,
-                                        name = "Wolf"
+                                        name = "Wolf",
+                                        password = "Keker123"
                                     )
                                 ).toInt()
                                 val antoha = runnerDao.insert(
@@ -113,7 +114,8 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         birthday = "1995-12-12",
                                         id_country = countryDao.getCountry("Russia").id,
                                         token = null,
-                                        name = "Antoha"
+                                        name = "Antoha",
+                                        password = "Keker123"
                                     )
                                 ).toInt()
                                 val harut = runnerDao.insert(
@@ -124,7 +126,8 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         birthday = "1995-12-12",
                                         id_country = countryDao.getCountry("Russia").id,
                                         token = null,
-                                        name = "Harut"
+                                        name = "Harut",
+                                        password = "Keker123"
                                     )
                                 ).toInt()
                                 val katrin = runnerDao.insert(
@@ -135,7 +138,8 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         birthday = "1995-12-12",
                                         id_country = countryDao.getCountry("Usa").id,
                                         token = null,
-                                        name = "Katrin"
+                                        name = "Katrin",
+                                        password = "Keker123"
                                     )
                                 ).toInt()
 

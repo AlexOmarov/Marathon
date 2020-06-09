@@ -27,6 +27,9 @@
         <action
             android:id="@+id/login_registration"
             app:destination="@id/destination_registration" />
+        <action
+            android:id="@+id/login_personal_card"
+            app:destination="@id/destination_person" />
     </fragment>
     <fragment
         android:id="@+id/destination_runner_list"
@@ -88,5 +91,15 @@
         <action
             android:id="@+id/registration_login"
             app:destination="@id/destination_login" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_person"
+        android:name="ru.somarov.marathon.ui.main.plugin.personal_info.PersonalCardFragment"
+        android:label="@string/person"
+        tools:layout="@layout/personal_card_fragment">
+        <argument
+            android:name="id"
+            android:defaultValue="0"
+            app:argType="integer" />
     </fragment>
 </navigation>

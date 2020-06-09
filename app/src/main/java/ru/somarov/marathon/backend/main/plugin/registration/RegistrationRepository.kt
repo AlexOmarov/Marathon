@@ -39,11 +39,11 @@ class RegistrationRepository (
         )).toInt())
     }
 
-    suspend fun getCountries(): LiveData<List<Country>> {
+    fun getCountries(): LiveData<List<Country>> {
         return countryDao.getCountries()
     }
 
-    suspend fun getGenders(): LiveData<List<Gender>> {
+    fun getGenders(): LiveData<List<Gender>> {
         return genderDao.getGenders()
     }
 }

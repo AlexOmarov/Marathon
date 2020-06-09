@@ -18,16 +18,16 @@ class RegistrationViewModel(private val regRepo: RegistrationRepository) : ViewM
 
     val email = MutableLiveData("")
     val name = MutableLiveData("")
-    val idGender = MutableLiveData("")
     val birthday = MutableLiveData("")
     val password = MutableLiveData("")
     val cnfPassword = MutableLiveData("")
     val age = MutableLiveData(0)
-    val idCountry = MutableLiveData(0)
     val token = MutableLiveData("")
     var result: LiveData<Runner> = MutableLiveData()
-    var genders: LiveData<List<Gender>> = MutableLiveData()
-    var countries: LiveData<List<Country>> = MutableLiveData()
+    var genders: LiveData<List<Gender>> = regRepo.getGenders()
+    var gender: MutableLiveData<Gender> = MutableLiveData()
+    var countries: LiveData<List<Country>> = regRepo.getCountries()
+    var country: MutableLiveData<Country> = MutableLiveData()
 
 
     private val _registrationInProcess = MutableLiveData(false)
@@ -50,23 +50,16 @@ class RegistrationViewModel(private val regRepo: RegistrationRepository) : ViewM
 
     init {
 
-        viewModelScope.launch {
-            genders = regRepo.getGenders()
-            countries = regRepo.getCountries()
-        }
         usernamePasswordListener.addSource(email) {
             usernamePasswordListener.value = it
         }
         usernamePasswordListener.addSource(password) {
             usernamePasswordListener.value = it
         }
-        usernamePasswordListener.addSource(idGender) {
-            usernamePasswordListener.value = it
+        usernamePasswordListener.addSource(gender) {
+            usernamePasswordListener.value = it.toString()
         }
         usernamePasswordListener.addSource(birthday) {
-            usernamePasswordListener.value = it
-        }
-        usernamePasswordListener.addSource(name) {
             usernamePasswordListener.value = it
         }
         usernamePasswordListener.addSource(name) {
@@ -78,7 +71,7 @@ class RegistrationViewModel(private val regRepo: RegistrationRepository) : ViewM
         usernamePasswordListener.addSource(age) {
             usernamePasswordListener.value = it.toString()
         }
-        usernamePasswordListener.addSource(idCountry) {
+        usernamePasswordListener.addSource(country) {
             usernamePasswordListener.value = it.toString()
         }
     }
@@ -88,22 +81,31 @@ class RegistrationViewModel(private val regRepo: RegistrationRepository) : ViewM
                 && Patterns.EMAIL_ADDRESS.matcher(email.value.toString()).matches()
                 && password.value == cnfPassword.value
                 && name.value != null
-                && idGender.value != null
+                && gender.value != null
                 && birthday.value != null
                 && age.value ?: 0 > 18
-                && idCountry.value != null
+                && country.value != null
     }
 
     fun registration() = viewModelScope.launch {
         if (isRegistrationAllowed()) {
+            println(
+                email.value.toString() + ", " +
+                        name.value.toString() + ", " +
+                        gender.value.toString() + ", " +
+                        birthday.value.toString() + ", " +
+                        password.value.toString() + ", " +
+                        age.value.toString() +  ", " +
+                        country.value.toString() + ", " +
+                        token.value.toString())
             result = regRepo.register(
                 email.value.toString(),
                 name.value.toString(),
-                idGender.value.toString(),
+                gender.value?.id.toString(),
                 birthday.value.toString(),
                 password.value.toString(),
                 age.value ?: 0,
-                idCountry.value ?: 0,
+                country.value?.id ?: 0,
                 token.value.toString()
             )
         }

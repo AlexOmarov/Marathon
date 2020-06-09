@@ -7,14 +7,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import kotlinx.android.synthetic.main.registration_fragment.*
 import ru.somarov.marathon.R
 import ru.somarov.marathon.backend.main.core.db.MarathonDatabase
+import ru.somarov.marathon.backend.main.core.db.entity.Country
+import ru.somarov.marathon.backend.main.core.db.entity.Gender
 import ru.somarov.marathon.backend.main.core.remote.RemoteDataSource
 import ru.somarov.marathon.backend.main.core.remote.RemoteService
 import ru.somarov.marathon.backend.main.core.remote.ServiceBuilder
@@ -57,15 +64,37 @@ class RegistrationFragment : Fragment() {
         }
 
         regViewModel.countries.observe(viewLifecycleOwner, Observer {
-            val adapter = ArrayAdapter(requireContext(),
+            binding.countries.adapter = CountriesSpinnerAdapter(requireContext(),
                 android.R.layout.simple_spinner_item, it)
-            binding.countries.adapter = adapter
         })
 
+        binding.countries.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                regViewModel.country = MutableLiveData()
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                regViewModel.country.value = countries.selectedItem as Country
+                println( regViewModel.gender )
+            }
+
+        }
+        binding.genders.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                regViewModel.country = MutableLiveData()
+                println( regViewModel.country )
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                regViewModel.gender.value = genders.selectedItem as Gender
+                println( regViewModel.gender )
+            }
+
+        }
+
         regViewModel.genders.observe(viewLifecycleOwner, Observer {
-            val adapter = ArrayAdapter(requireContext(),
+            binding.genders.adapter = GendersSpinnerAdapter(requireContext(),
                 android.R.layout.simple_spinner_item, it)
-            binding.genders.adapter = adapter
         })
 
         binding.viewModel = regViewModel
