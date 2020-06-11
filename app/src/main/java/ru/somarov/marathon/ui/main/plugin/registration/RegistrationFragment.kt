@@ -57,11 +57,8 @@ class RegistrationFragment : Fragment() {
         val binding: RegistrationFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.registration_fragment, container, false)
 
-        binding.register.setOnClickListener {
-            regViewModel.registration()
-            val navaction = RegistrationFragmentDirections.registrationLogin()
-            Navigation.findNavController(it).navigate(navaction)
-        }
+        binding.viewModel = regViewModel
+        binding.lifecycleOwner = this
 
         regViewModel.countries.observe(viewLifecycleOwner, Observer {
             binding.countries.adapter = CountriesSpinnerAdapter(requireContext(),
@@ -97,8 +94,12 @@ class RegistrationFragment : Fragment() {
                 android.R.layout.simple_spinner_item, it)
         })
 
-        binding.viewModel = regViewModel
-        binding.lifecycleOwner = this
+
+        binding.register.setOnClickListener {
+            regViewModel.registration()
+            Navigation.findNavController(it).navigate(RegistrationFragmentDirections.registrationLogin(0))
+        }
+
 
         return binding.root
     }

@@ -34,6 +34,7 @@ class AuthenticationViewModel(private val loginRepository: LoginRepository): Vie
         }
 
     init {
+        println("INIT RUNNER: ${runner.value}")
         usernamePasswordListener.addSource(username) {
             usernamePasswordListener.value = it
         }
@@ -55,5 +56,6 @@ class AuthenticationViewModel(private val loginRepository: LoginRepository): Vie
             runner = loginRepository.login(login, passwd)
         }
         _loginInProcess.value = false
+        println("LOGIN RUNNER:  ${runner.value}")
     }
 }

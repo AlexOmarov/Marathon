@@ -24,13 +24,21 @@ class MarathonCardViewModel(application: Application) : AndroidViewModel(applica
         )
 
     var marathon: LiveData<Marathon> = MutableLiveData()
+    var runners: LiveData<List<Runner>> = MutableLiveData()
 
-    fun setRunner(id: Int) = viewModelScope.launch {
+    fun setupMarathonCard(id: Int) = viewModelScope.launch {
         marathon = cardRepo.getMarathon(id)
+        runners = cardRepo.getRunnersSignedUpToMarathon(id)
     }
 
     fun logout() = viewModelScope.launch {
         cardRepo.logout()
+    }
+
+    fun signup(id_runner: Int, id_marathon: Int) = viewModelScope.launch {
+        if(cardRepo.getSubscription(id_runner, id_marathon) == null) {
+            cardRepo.signupToMarathon(id_runner, id_marathon)
+        }
     }
 
 

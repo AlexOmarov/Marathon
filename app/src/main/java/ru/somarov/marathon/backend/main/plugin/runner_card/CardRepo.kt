@@ -95,6 +95,10 @@ class CardRepo(
         return genderDao.getGender(name)
     }
 
+    suspend fun signupToMarathon(id_runner: Int, id_marathon: Int) {
+        return subscriptionDao.signupToMarathon(id_runner,id_marathon)
+    }
+
     suspend fun getCountry(name: String): Country {
         return countryDao.getCountry(name)
     }
@@ -109,5 +113,13 @@ class CardRepo(
 
     suspend fun insertCountry(country: Country): Long {
         return countryDao.insert(country)
+    }
+
+    fun getRunnersSignedUpToMarathon(id: Int): LiveData<List<Runner>> {
+        return marathonDao.getRunnersByMarathon(id)
+    }
+
+    suspend fun getSubscription(idRunner: Int, idMarathon: Int): Subscription? {
+        return subscriptionDao.getSubscription(idRunner,idMarathon)
     }
 }

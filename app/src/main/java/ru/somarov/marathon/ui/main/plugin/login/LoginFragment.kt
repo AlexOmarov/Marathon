@@ -22,6 +22,7 @@ import ru.somarov.marathon.databinding.LoginFragmentBinding
 import ru.somarov.marathon.ui.main.core.viewmodel.AuthenticationViewModel
 import ru.somarov.marathon.ui.main.core.viewmodel.AuthenticationViewModelFactory
 import ru.somarov.marathon.ui.main.plugin.registration.RegistrationViewModel
+import java.lang.Exception
 
 class LoginFragment : Fragment() {
 
@@ -38,15 +39,19 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        viewModel = ViewModelProviders.of(requireActivity(), AuthenticationViewModelFactory(
-            LoginRepository(
-                runnerDao = MarathonDatabase.getDatabase(requireContext()).runnerDao,
-                genderDao = MarathonDatabase.getDatabase(requireContext()).genderDao,
-                countryDao = MarathonDatabase.getDatabase(requireContext()).countryDao,
-                dataSource = RemoteDataSource(ServiceBuilder.buildService(RemoteService::class.java))
-            )
-        )
-        ).get(AuthenticationViewModel::class.java)
+        viewModel = activity?.run {
+            ViewModelProviders.of(
+                this, AuthenticationViewModelFactory(
+                    LoginRepository(
+                        runnerDao = MarathonDatabase.getDatabase(requireContext()).runnerDao,
+                        genderDao = MarathonDatabase.getDatabase(requireContext()).genderDao,
+                        countryDao = MarathonDatabase.getDatabase(requireContext()).countryDao,
+                        dataSource = RemoteDataSource(ServiceBuilder.buildService(RemoteService::class.java))
+                    )
+                )
+            ).get(AuthenticationViewModel::class.java)
+        } ?: throw Exception()
+
 
         val binding: LoginFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.login_fragment, container, false)

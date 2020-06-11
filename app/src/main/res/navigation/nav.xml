@@ -78,6 +78,15 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/marathon_card_person"
+            app:destination="@id/destination_person" />
+        <action
+            android:id="@+id/marathon_card_login"
+            app:destination="@id/destination_login" />
+        <action
+            android:id="@+id/marathon_card_runner_card"
+            app:destination="@id/destination_runner_card" />
     </fragment>
     <fragment
         android:id="@+id/destination_organizers_list"

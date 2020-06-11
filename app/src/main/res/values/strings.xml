@@ -35,4 +35,5 @@
     <string name="name">Name</string>
     <string name="countries">Countries</string>
     <string name="genders">Genders</string>
+    <string name="account">Account</string>
 </resources>

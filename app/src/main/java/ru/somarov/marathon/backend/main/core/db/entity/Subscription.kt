@@ -22,6 +22,6 @@ data class Subscription (
     var id_marathon: Int,
     var id_runner: Int
 ) {
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
     var id: Int? = null
 }

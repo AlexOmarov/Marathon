@@ -25,9 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-
             android:layout_marginTop="32dp"
-
             android:hint="@string/shr_hint_username"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +82,6 @@
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="64dp"
             android:enabled="@{viewModel.loginAllowed}"
-            android:onClick="@{() -> viewModel.login()}"
             android:text="@string/action_sign_in"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -118,9 +115,9 @@
             android:layout_marginBottom="64dp"
             android:visibility="@{viewModel.progressBarEnabled}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/passwordWrapper"
-            app:layout_constraintStart_toStartOf="@+id/passwordWrapper"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/register"
+            app:layout_constraintStart_toStartOf="@+id/register"
+            app:layout_constraintTop_toTopOf="@+id/register"
             app:layout_constraintVertical_bias="0.81" />
 
 
