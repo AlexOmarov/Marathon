@@ -9,6 +9,10 @@
         android:icon="@drawable/ic_launcher_background"
         android:title="@string/calculators"/>
     <item
+        android:id="@+id/destination_donation"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="@string/donation"/>
+    <item
         android:id="@+id/destination_organizers_list"
         android:icon="@drawable/ic_launcher_background"
         android:title="@string/organizers"/>

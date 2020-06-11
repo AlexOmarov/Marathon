@@ -111,4 +111,18 @@
             android:defaultValue="0"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/destination_calc"
+        android:name="ru.somarov.marathon.ui.main.plugin.bmi.BmiFragment"
+        android:label="@string/calculators" />
+    <fragment
+        android:id="@+id/destination_info"
+        android:name="ru.somarov.marathon.ui.main.plugin.info.InfoFragment"
+        android:label="@string/info_header"
+        tools:layout="@layout/info_fragment" />
+    <fragment
+        android:id="@+id/destination_donation"
+        android:name="ru.somarov.marathon.ui.main.plugin.donation.DonationFragment"
+        android:label="@string/donation"
+        tools:layout="@layout/donation_fragment" />
 </navigation>
