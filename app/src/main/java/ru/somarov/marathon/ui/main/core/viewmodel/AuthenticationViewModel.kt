@@ -57,5 +57,10 @@ class AuthenticationViewModel(private val loginRepository: LoginRepository): Vie
         }
         _loginInProcess.value = false
         println("LOGIN RUNNER:  ${runner.value}")
+
+    }
+
+    fun save() = viewModelScope.launch {
+        loginRepository.update(runner.value)
     }
 }

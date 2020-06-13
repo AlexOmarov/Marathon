@@ -30,5 +30,11 @@ class LoginRepository(
         return runnerDao.getRunner(username, password)
     }
 
+    suspend fun update(value: Runner?) {
+        value?.let {
+            runnerDao.update(value)
+        }
+    }
+
 
 }
