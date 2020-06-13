@@ -20,7 +20,8 @@ import androidx.room.PrimaryKey
     indices = [Index("id_marathon"), Index("id_runner")])
 data class Subscription (
     var id_marathon: Int,
-    var id_runner: Int
+    var id_runner: Int,
+    var date: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null

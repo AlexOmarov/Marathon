@@ -148,7 +148,9 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         name = "TOUR DE FRANCE",
                                         address = "Lenina street, St. Pt1",
                                         id_country = countryDao.getCountry("Russia").id,
-                                        type = "Auto"
+                                        type = "Auto",
+                                        city = "Barnaul",
+                                        year = "1997"
                                     )
                                 )
                                 marathonDao.insert(
@@ -156,7 +158,9 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         name = "TOUR DE GLANCE",
                                         address = "Lenina street, St. Pt2",
                                         id_country = countryDao.getCountry("Canada").id,
-                                        type = "Walk"
+                                        type = "Walk",
+                                        city = "Ottawa",
+                                        year = "1998"
                                     )
                                 )
                                 marathonDao.insert(
@@ -164,17 +168,20 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         name = "TOUR DE SIANCE",
                                         address = "Lenina street, St. Pt3",
                                         id_country = countryDao.getCountry("Usa").id,
-                                        type = "Fly"
+                                        type = "Fly",
+                                        city = "New York",
+                                        year = "1999"
                                     )
                                 )
-
 
                                 sponsorDao.insert(
                                     Sponsor(
                                         name = "Alex HatWearer",
                                         id_type = "Person",
                                         amount = 300,
-                                        id_runner = antoha
+                                        id_runner = antoha,
+                                        id_country = countryDao.getCountry("Usa").id,
+                                        id_gender = genderDao.getGender("MALE").id
                                     )
                                 )
                                 sponsorDao.insert(
@@ -182,7 +189,9 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         name = "Alex HatWearer2",
                                         id_type = "Person",
                                         amount = 400,
-                                        id_runner = antoha
+                                        id_runner = antoha,
+                                        id_country = countryDao.getCountry("Russia").id,
+                                        id_gender = genderDao.getGender("MALE").id
                                     )
                                 )
                                 sponsorDao.insert(
@@ -190,14 +199,16 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         name = "Alex HatWearer1",
                                         id_type = "Person",
                                         amount = 500,
-                                        id_runner = antoha
+                                        id_runner = antoha,
+                                        id_country = countryDao.getCountry("Canada").id,
+                                        id_gender = genderDao.getGender("MALE").id
                                     )
                                 )
                                 marathonDao.getMarathon("TOUR DE FRANCE").value?.id?.let { marathonId ->
-                                    subscriptionDao.insert(Subscription(marathonId, antoha))
+                                    subscriptionDao.insert(Subscription(marathonId, antoha,"2020-10-10"))
                                 }
                                 marathonDao.getMarathon("TOUR DE GLANCE").value?.id?.let { marathonId ->
-                                    subscriptionDao.insert(Subscription(marathonId, antoha))
+                                    subscriptionDao.insert(Subscription(marathonId, antoha, "2020-10-11"))
                                 }
 
 
@@ -207,7 +218,9 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         name = "Alex TenderBones",
                                         id_type = "Person",
                                         amount = 300,
-                                        id_runner = katrin
+                                        id_runner = katrin,
+                                        id_country = countryDao.getCountry("Russia").id,
+                                        id_gender = genderDao.getGender("MALE").id
                                     )
                                 )
                                 sponsorDao.insert(
@@ -215,7 +228,9 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         name = "Alex TenderBones2",
                                         id_type = "Person",
                                         amount = 400,
-                                        id_runner = katrin
+                                        id_runner = katrin,
+                                        id_country = countryDao.getCountry("Russia").id,
+                                        id_gender = genderDao.getGender("MALE").id
                                     )
                                 )
                                 sponsorDao.insert(
@@ -223,14 +238,16 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         name = "Alex TenderBones1",
                                         id_type = "Person",
                                         amount = 500,
-                                        id_runner = katrin
+                                        id_runner = katrin,
+                                        id_country = countryDao.getCountry("Russia").id,
+                                        id_gender = genderDao.getGender("MALE").id
                                     )
                                 )
                                 marathonDao.getMarathon("TOUR DE FRANCE").value?.id?.let { marathonId ->
-                                    subscriptionDao.insert(Subscription(marathonId, katrin))
+                                    subscriptionDao.insert(Subscription(marathonId, katrin, "2020-10-11"))
                                 }
                                 marathonDao.getMarathon("TOUR DE GLANCE").value?.id?.let { marathonId ->
-                                    subscriptionDao.insert(Subscription(marathonId, katrin))
+                                    subscriptionDao.insert(Subscription(marathonId, katrin, "2020-10-11"))
                                 }
 
 
@@ -240,7 +257,9 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         name = "Alex Leunce",
                                         id_type = "Person",
                                         amount = 300,
-                                        id_runner = harut
+                                        id_runner = harut,
+                                        id_country = countryDao.getCountry("Canada").id,
+                                        id_gender = genderDao.getGender("MALE").id
                                     )
                                 )
                                 sponsorDao.insert(
@@ -248,7 +267,9 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         name = "Alex Leunce2",
                                         id_type = "Person",
                                         amount = 400,
-                                        id_runner = harut
+                                        id_runner = harut,
+                                        id_country = countryDao.getCountry("Canada").id,
+                                        id_gender = genderDao.getGender("MALE").id
                                     )
                                 )
                                 sponsorDao.insert(
@@ -256,14 +277,16 @@ abstract class MarathonDatabase : RoomDatabase() {
                                         name = "Alex Leunce1",
                                         id_type = "Person",
                                         amount = 500,
-                                        id_runner = harut
+                                        id_runner = harut,
+                                        id_country = countryDao.getCountry("Canada").id,
+                                        id_gender = genderDao.getGender("MALE").id
                                     )
                                 )
                                 marathonDao.getMarathon("TOUR DE FRANCE").value?.id?.let { marathonId ->
-                                    subscriptionDao.insert(Subscription(marathonId, harut))
+                                    subscriptionDao.insert(Subscription(marathonId, harut, "2020-11-11"))
                                 }
                                 marathonDao.getMarathon("TOUR DE GLANCE").value?.id?.let { marathonId ->
-                                    subscriptionDao.insert(Subscription(marathonId, harut))
+                                    subscriptionDao.insert(Subscription(marathonId, harut, "2020-11-11"))
                                 }
 
 

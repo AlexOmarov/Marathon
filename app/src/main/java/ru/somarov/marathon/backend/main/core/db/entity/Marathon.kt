@@ -7,7 +7,9 @@ data class Marathon (
     var name: String,
     var address: String,
     var id_country: Int,
-    var type: String
+    var type: String,
+    var year: String,
+    var city: String
 ) {
     @PrimaryKey(autoGenerate = false)
     var id: Int? = null

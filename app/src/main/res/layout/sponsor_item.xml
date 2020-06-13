@@ -28,8 +28,7 @@
                 android:layout_margin="8dp"
                 android:contentDescription="@string/avatar"
                 android:gravity="center_vertical"
-                android:padding="16dp"
-                app:srcCompat="@drawable/ic_perm_contact_calendar_black_24dp" />
+                android:padding="16dp" />
 
             <LinearLayout
 

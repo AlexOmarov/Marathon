@@ -11,11 +11,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
+import kotlinx.android.synthetic.main.personal_card_fragment.view.*
 import ru.somarov.marathon.R
 import ru.somarov.marathon.backend.main.core.db.MarathonDatabase
 import ru.somarov.marathon.backend.main.core.remote.RemoteDataSource
 import ru.somarov.marathon.backend.main.core.remote.RemoteService
 import ru.somarov.marathon.backend.main.core.remote.ServiceBuilder
+import ru.somarov.marathon.backend.main.core.resource.handle
 import ru.somarov.marathon.backend.main.plugin.login.LoginRepository
 import ru.somarov.marathon.backend.main.plugin.runner_card.CardWorker
 import ru.somarov.marathon.databinding.RunnerCardFragmentBinding
@@ -60,7 +62,8 @@ class PersonalCardFragment : Fragment() {
             viewModel.runner.observe(viewLifecycleOwner, Observer {
                 binding.runner = it
             })
-
+            val flag = viewModel.runner.value?.id_country?.let { handle(it) }
+            binding.root.icon.setImageResource(flag ?: 0)
             binding.lifecycleOwner = this
 
             return binding.root

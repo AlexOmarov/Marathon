@@ -35,7 +35,7 @@ class DonationViewModel(application: Application) : AndroidViewModel(application
         val id = runner.value?.id
         val amount = amount.value ?: 0
         if(amount != 0 && id != null) {
-            cardRepo.insertSponsor(Sponsor(name = name.value ?: "Unknown",amount = amount,id_runner = id, id_type = "Person"))
+            cardRepo.insertSponsor(Sponsor(name = name.value ?: "Unknown",amount = amount,id_runner = id, id_type = "Person", id_country = 1, id_gender = "MALE"))
         }
     }
 }
