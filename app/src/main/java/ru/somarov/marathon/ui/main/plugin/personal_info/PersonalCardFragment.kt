@@ -6,14 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.viewModelScope
-import androidx.work.OneTimeWorkRequest
-import androidx.work.WorkManager
 import kotlinx.android.synthetic.main.personal_card_fragment.view.*
-import kotlinx.coroutines.launch
 import ru.somarov.marathon.R
 import ru.somarov.marathon.backend.main.core.db.MarathonDatabase
 import ru.somarov.marathon.backend.main.core.remote.RemoteDataSource
@@ -21,14 +15,10 @@ import ru.somarov.marathon.backend.main.core.remote.RemoteService
 import ru.somarov.marathon.backend.main.core.remote.ServiceBuilder
 import ru.somarov.marathon.backend.main.core.resource.handle
 import ru.somarov.marathon.backend.main.plugin.login.LoginRepository
-import ru.somarov.marathon.backend.main.plugin.runner_card.CardWorker
 import ru.somarov.marathon.databinding.PersonalCardFragmentBinding
-import ru.somarov.marathon.databinding.RunnerCardFragmentBinding
 import ru.somarov.marathon.ui.main.core.viewmodel.AuthenticationViewModel
 import ru.somarov.marathon.ui.main.core.viewmodel.AuthenticationViewModelFactory
 import ru.somarov.marathon.ui.main.plugin.sponsor_card.SponsorCardFragment
-import ru.somarov.marathon.ui.main.plugin.sponsor_card.SponsorCardViewModel
-import java.lang.Exception
 
 class PersonalCardFragment : Fragment() {
 
@@ -39,11 +29,13 @@ class PersonalCardFragment : Fragment() {
 
     private lateinit var viewModel: AuthenticationViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         viewModel = activity?.run {
-            ViewModelProviders.of(
+            ViewModelProvider(
                 this, AuthenticationViewModelFactory(
                     LoginRepository(
                         runnerDao = MarathonDatabase.getDatabase(requireContext()).runnerDao,
@@ -52,42 +44,25 @@ class PersonalCardFragment : Fragment() {
                         dataSource = RemoteDataSource(ServiceBuilder.buildService(RemoteService::class.java))
                     )
                 )
-            ).get(AuthenticationViewModel::class.java)
+            )[AuthenticationViewModel::class.java]
         } ?: throw Exception()
 
 
         println("Personal card init RUNNER:  ${viewModel.runner.value}")
 
-            val binding: PersonalCardFragmentBinding = DataBindingUtil.inflate(
-                inflater, R.layout.personal_card_fragment, container, false)
+        val binding: PersonalCardFragmentBinding = DataBindingUtil.inflate(
+            inflater, R.layout.personal_card_fragment, container, false
+        )
 
 
-            viewModel.runner.observe(viewLifecycleOwner, Observer {
-                binding.runner = it
-            })
-            val flag = viewModel.runner.value?.id_country?.let { handle(it) }
-            println(flag)
-            binding.root.icon.setImageResource(flag ?: 0)
-            binding.lifecycleOwner = this
+        viewModel.runner.observe(viewLifecycleOwner) {
+            binding.runner = it
+        }
+        val flag = viewModel.runner.value?.id_country?.let { handle(it) }
+        println(flag)
+        binding.root.icon.setImageResource(flag ?: 0)
+        binding.lifecycleOwner = this
 
-            return binding.root
+        return binding.root
     }
-
-    fun save() {
-        viewModel.save()
-    }
-
-    fun launchWorkingManager() {
-        val request = OneTimeWorkRequest.Builder(CardWorker::class.java).build()
-        WorkManager.getInstance(requireContext()).enqueue(request)
-        WorkManager.getInstance(requireContext()).getWorkInfoByIdLiveData(request.id).observe(
-            viewLifecycleOwner, Observer { workInfo ->
-            // TODO
-        })
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
 }
